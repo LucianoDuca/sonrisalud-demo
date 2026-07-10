@@ -1,0 +1,80 @@
+{
+  "nombre": "Clínica Dental Sonrisalud",
+  "ciudad": "Salamanca",
+  "eslogan": "Tu sonrisa, en las mejores manos de Salamanca",
+  "telefono": "+34 923 000 000",
+  "whatsapp": "34600000000",
+  "whatsappMensaje": "Hola, quería pedir una cita en Clínica Dental Sonrisalud",
+  "colores": {
+    "primario": "#0E7C7B",
+    "acento": "#F4A259"
+  },
+  "servicios": [
+    {
+      "nombre": "Implantes dentales",
+      "descripcion": "Recupera la funcionalidad y estética de tu sonrisa con implantes de titanio de alta calidad."
+    },
+    {
+      "nombre": "Ortodoncia invisible",
+      "descripcion": "Alinea tus dientes sin brackets metálicos, con férulas transparentes a tu medida."
+    },
+    {
+      "nombre": "Blanqueamiento dental",
+      "descripcion": "Resultados visibles desde la primera sesión, con técnicas seguras para el esmalte."
+    },
+    {
+      "nombre": "Limpieza dental",
+      "descripcion": "Revisión y limpieza profesional para mantener tu boca sana todo el año."
+    },
+    {
+      "nombre": "Odontología infantil",
+      "descripcion": "Primeras visitas y tratamientos pensados para que los más pequeños pierdan el miedo al dentista."
+    },
+    {
+      "nombre": "Estética dental",
+      "descripcion": "Carillas y diseño de sonrisa para conseguir el resultado que buscas."
+    }
+  ],
+  "resenasTotales": 47,
+  "notaGoogle": 4.8,
+  "resenas": [
+    {
+      "autor": "María G.",
+      "estrellas": 5,
+      "texto": "Un trato excelente desde el primer momento. Me hicieron un implante y el resultado ha sido perfecto. Muy recomendable."
+    },
+    {
+      "autor": "Javier R.",
+      "estrellas": 5,
+      "texto": "Le tenía pánico al dentista y aquí me han cambiado la percepción por completo. Muy profesionales y atentos."
+    },
+    {
+      "autor": "Lucía M.",
+      "estrellas": 5,
+      "texto": "Pedí cita para un blanqueamiento y quedé encantada con el resultado. Instalaciones limpias y modernas."
+    },
+    {
+      "autor": "Antonio P.",
+      "estrellas": 4,
+      "texto": "Muy buena atención y explican bien cada paso del tratamiento. Repetiré sin duda."
+    }
+  ],
+  "equipo": [
+    {
+      "nombre": "Dra. Elena Vázquez",
+      "rol": "Directora clínica · Odontóloga",
+      "bio": "Más de 15 años de experiencia en implantología y estética dental en Salamanca.",
+      "iniciales": "EV"
+    },
+    {
+      "nombre": "Dr. Marcos Ibáñez",
+      "rol": "Ortodoncista",
+      "bio": "Especialista en ortodoncia invisible, dedicado a que cada paciente sonría con confianza.",
+      "iniciales": "MI"
+    }
+  ],
+  "direccion": "Calle Toro 45, 37001 Salamanca",
+  "horarios": "Lunes a viernes: 9:00 - 20:00 · Sábados: 10:00 - 14:00",
+  "mapaEmbedUrl": "https://www.google.com/maps?q=Calle+Toro+45+Salamanca&output=embed",
+  "demo": true
+}

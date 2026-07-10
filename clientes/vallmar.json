@@ -1,0 +1,80 @@
+{
+  "nombre": "Clínica Dental Vallmar",
+  "ciudad": "Burgos",
+  "eslogan": "Sonrisas cuidadas con calma, en el centro de Burgos",
+  "telefono": "+34 947 000 000",
+  "whatsapp": "34600000001",
+  "whatsappMensaje": "Hola, quería pedir una cita en Clínica Dental Vallmar",
+  "colores": {
+    "primario": "#7C2D3A",
+    "acento": "#D4A24C"
+  },
+  "servicios": [
+    {
+      "nombre": "Ortodoncia infantil y adulta",
+      "descripcion": "Tratamientos a medida para cada edad, con revisiones incluidas durante todo el proceso."
+    },
+    {
+      "nombre": "Endodoncia",
+      "descripcion": "Tratamiento de conducto sin dolor, con tecnología que acorta el tiempo en el sillón."
+    },
+    {
+      "nombre": "Implantes dentales",
+      "descripcion": "Recupera piezas perdidas con implantes de calidad certificada y garantía por escrito."
+    },
+    {
+      "nombre": "Periodoncia",
+      "descripcion": "Cuidado de encías para frenar a tiempo problemas que después salen mucho más caros."
+    },
+    {
+      "nombre": "Odontología general",
+      "descripcion": "Revisiones, empastes y limpiezas para mantener tu boca sana todo el año."
+    },
+    {
+      "nombre": "Estética dental",
+      "descripcion": "Carillas y blanqueamiento para la sonrisa que querías desde hace tiempo."
+    }
+  ],
+  "resenasTotales": 63,
+  "notaGoogle": 4.9,
+  "resenas": [
+    {
+      "autor": "Marta L.",
+      "estrellas": 5,
+      "texto": "Muy profesionales y con mucha paciencia. Llevé a mis dos hijos y salieron encantados."
+    },
+    {
+      "autor": "Ricardo S.",
+      "estrellas": 5,
+      "texto": "Me hice un implante y el seguimiento posterior fue excelente. Se nota que les importa el paciente."
+    },
+    {
+      "autor": "Elena P.",
+      "estrellas": 5,
+      "texto": "Pedí cita por la web y me atendieron en dos días. Instalaciones impecables."
+    },
+    {
+      "autor": "Fernando A.",
+      "estrellas": 4,
+      "texto": "Buen trato y precios claros desde el primer presupuesto."
+    }
+  ],
+  "equipo": [
+    {
+      "nombre": "Dr. Álvaro Muñoz",
+      "rol": "Director clínico · Odontólogo",
+      "bio": "Especialista en implantología con más de una década de experiencia en Burgos.",
+      "iniciales": "AM"
+    },
+    {
+      "nombre": "Dra. Cristina Nieto",
+      "rol": "Ortodoncista",
+      "bio": "Dedicada a la ortodoncia infantil y adulta, con un trato especialmente cercano con los más pequeños.",
+      "iniciales": "CN"
+    }
+  ],
+  "direccion": "Calle Vitoria 12, 09004 Burgos",
+  "horarios": "Lunes a viernes: 9:30 - 20:30 · Sábados: 10:00 - 13:30",
+  "mapaEmbedUrl": "https://www.google.com/maps?q=Calle+Vitoria+12+Burgos&output=embed",
+  "demo": true
+}
