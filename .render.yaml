@@ -1,0 +1,7 @@
+services:
+  - type: static
+    name: sonrisalud-demo
+    staticPublishPath: ./
+    routes:
+      - path: /*
+        destination: /index.html
