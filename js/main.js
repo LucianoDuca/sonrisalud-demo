@@ -66,6 +66,12 @@ function renderPage() {
   renderTeam();
   renderLocation();
   renderFooter();
+
+  // Initialize advanced features (navbar, sliders, gallery, FAQ)
+  if (typeof initializeAdvancedFeatures === 'function') {
+    initializeAdvancedFeatures(config);
+  }
+
   updateYear();
 }
 

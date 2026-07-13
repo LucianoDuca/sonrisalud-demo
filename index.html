@@ -16,6 +16,7 @@
   <link rel="stylesheet" href="./css/layout.css">
   <link rel="stylesheet" href="./css/components.css">
   <link rel="stylesheet" href="./css/sections.css">
+  <link rel="stylesheet" href="./css/advanced.css">
   <link rel="stylesheet" href="./css/responsive.css">
 </head>
 <body>
@@ -28,13 +29,36 @@
       <a href="#" class="logo">
         <span>Dental Mendoza</span>
       </a>
-      <nav>
-        <a href="#hero" class="active">Inicio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#resenas">Opiniones</a>
-        <a href="#equipo">Equipo</a>
-        <a href="#ubicacion">Contacto</a>
+      <nav class="nav-desktop">
+        <a href="#hero" class="nav-link active">Inicio</a>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">Odontología General</a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item">Limpiezas</a>
+            <a href="#" class="dropdown-item">Empastes</a>
+            <a href="#" class="dropdown-item">Endodoncia</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">Odontología Estética</a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item">Blanqueamiento</a>
+            <a href="#" class="dropdown-item">Carillas</a>
+            <a href="#" class="dropdown-item">Diseño de sonrisa</a>
+          </div>
+        </div>
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">Cirugía Ortomaxilofacial</a>
+          <div class="dropdown-menu">
+            <a href="#" class="dropdown-item">Implantes</a>
+            <a href="#" class="dropdown-item">Extracciones</a>
+            <a href="#" class="dropdown-item">Cirugía ósea</a>
+          </div>
+        </div>
+        <a href="#galeria" class="nav-link">Antes y Después</a>
+        <a href="#faq" class="nav-link">Preguntas Frecuentes</a>
       </nav>
+      <button class="menu-toggle" id="menuToggle">☰</button>
     </div>
   </header>
 
@@ -46,20 +70,30 @@
     <!-- Services Section -->
     <section id="servicios" class="services"></section>
 
+    <!-- Before/After Slider Section -->
+    <section id="slider" class="before-after-slider"></section>
+
     <!-- Reviews Section -->
     <section id="resenas" class="reviews"></section>
+
+    <!-- Gallery Section -->
+    <section id="galeria" class="gallery"></section>
 
     <!-- Team Section -->
     <section id="equipo" class="team"></section>
 
     <!-- Location Section -->
     <section id="ubicacion" class="location"></section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq"></section>
   </main>
 
   <!-- Footer -->
   <footer></footer>
 
   <!-- Scripts -->
+  <script src="./js/interactivity.js"></script>
   <script src="./js/main.js"></script>
 </body>
 </html>
