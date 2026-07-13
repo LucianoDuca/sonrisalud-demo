@@ -1,5 +1,18 @@
 // Advanced interactivity for navbar, sliders, gallery, and FAQ
 
+// ===== PROCEDURE MAPPING =====
+const procedureMapping = {
+  'Implantes': 'implantes',
+  'Limpiezas': null, // General info
+  'Empastes': null,
+  'Endodoncia': 'endodoncia',
+  'Blanqueamiento': 'blanqueamiento',
+  'Carillas': 'estetica',
+  'Diseño de sonrisa': 'estetica',
+  'Extracciones': null,
+  'Cirugía ósea': null
+};
+
 // ===== NAVBAR DROPDOWNS =====
 function initNavbar() {
   const menuToggle = document.getElementById('menuToggle');
@@ -15,7 +28,8 @@ function initNavbar() {
     // Close menu when clicking on a link
     document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
       link.addEventListener('click', (e) => {
-        if (link.classList.contains('nav-link') && !link.parentElement.classList.contains('nav-dropdown')) {
+        const href = link.getAttribute('href');
+        if (href && href !== '#') {
           navDesktop.classList.remove('active');
         }
       });
@@ -29,6 +43,36 @@ function initNavbar() {
       navLink.addEventListener('click', (e) => {
         e.preventDefault();
         dropdown.classList.toggle('active');
+      });
+    }
+  });
+
+  // Connect dropdown items to procedures
+  document.querySelectorAll('.dropdown-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const procedureName = item.textContent.trim();
+      const procedureKey = procedureMapping[procedureName];
+
+      if (procedureKey && typeof renderProcedurePage === 'function') {
+        renderProcedurePage(procedureKey);
+      } else if (procedureName === 'Limpiezas' || procedureName === 'Empastes' || procedureName === 'Extracciones' || procedureName === 'Cirugía ósea') {
+        // Scroll to servicios section for general info
+        document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+
+  // Connect main nav items
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href && href.startsWith('#') && href !== '#') {
+      link.addEventListener('click', (e) => {
+        const section = document.querySelector(href);
+        if (section) {
+          e.preventDefault();
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
       });
     }
   });
@@ -272,6 +316,44 @@ function renderFAQ(config) {
   setTimeout(initFAQ, 0);
 }
 
+// ===== SCROLL REVEAL ANIMATIONS =====
+function initScrollReveal() {
+  const reveals = document.querySelectorAll('.reveal, .service-card, .review-card, .gallery-item, .team-member, .faq-item');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        // Optional: stop observing after reveal
+        // observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  });
+
+  reveals.forEach(element => {
+    observer.observe(element);
+  });
+}
+
+// ===== SMOOTH SCROLL BEHAVIOR =====
+function initSmoothScroll() {
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (href === '#' || href === '') return;
+
+      e.preventDefault();
+      const target = document.querySelector(href);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+}
+
 // ===== INITIALIZE ALL =====
 function initializeAdvancedFeatures(config) {
   console.log('Initializing advanced features');
@@ -279,9 +361,15 @@ function initializeAdvancedFeatures(config) {
   renderGallery(config);
   renderFAQ(config);
   initNavbar();
+
+  // Initialize additional features
+  setTimeout(() => {
+    initScrollReveal();
+    initSmoothScroll();
+  }, 100);
 }
 
 // Export for use in main.js
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { initializeAdvancedFeatures };
+  module.exports = { initializeAdvancedFeatures, initScrollReveal, initSmoothScroll };
 }
