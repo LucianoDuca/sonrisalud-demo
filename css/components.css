@@ -16,12 +16,13 @@
 }
 
 .btn-primary {
-  background-color: var(--accent-blue);
-  color: white;
+  background-color: var(--accent);
+  color: var(--text);
 }
 
 .btn-primary:hover {
-  background-color: #0052A3;
+  background-color: var(--accent-dark);
+  color: white;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -38,19 +39,19 @@
 }
 
 .btn-success {
-  background-color: var(--accent-green);
+  background-color: var(--primary);
   color: white;
 }
 
 .btn-success:hover {
-  background-color: #16A34A;
+  background-color: var(--primary-dark);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
 
 /* Cards */
 .card {
-  background-color: white;
+  background-color: var(--bg-elevated);
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
   padding: var(--spacing-lg);
@@ -79,7 +80,7 @@
 /* Badge */
 .badge {
   display: inline-block;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(46, 51, 40, 0.08);
   color: var(--text);
   padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--radius-full);
@@ -90,8 +91,8 @@
 }
 
 .badge-primary {
-  background-color: rgba(0, 102, 204, 0.1);
-  color: var(--accent-blue);
+  background-color: rgba(91, 123, 99, 0.12);
+  color: var(--primary-dark);
 }
 
 /* Stars */
@@ -109,11 +110,11 @@
 }
 
 .star-filled {
-  color: #FCD34D;
+  color: var(--accent);
 }
 
 .star-empty {
-  color: #D1D5DB;
+  color: rgba(46, 51, 40, 0.2);
 }
 
 /* Section header */
@@ -127,13 +128,14 @@
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: var(--accent-blue);
+  color: var(--accent-dark);
   margin-bottom: var(--spacing-md);
 }
 
 .section-header-title {
-  font-size: 2rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 2.125rem;
+  font-weight: 500;
   color: var(--text);
   line-height: var(--line-height-tight);
 }

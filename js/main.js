@@ -59,6 +59,7 @@ function renderPage() {
   document.documentElement.style.setProperty('--primary', config.colores.primario);
   document.documentElement.style.setProperty('--accent', config.colores.acento);
 
+  renderLogo();
   renderDemoBanner();
   renderHero();
   renderServices();
@@ -73,6 +74,13 @@ function renderPage() {
   }
 
   updateYear();
+}
+
+function renderLogo() {
+  const logoText = document.querySelector('[data-logo-text]');
+  if (logoText) {
+    logoText.textContent = config.nombre;
+  }
 }
 
 function renderDemoBanner() {
@@ -116,9 +124,7 @@ function renderHero() {
       </div>
 
       <div class="hero-image">
-        <div class="hero-image-placeholder">
-          Foto de la clínica / equipo
-        </div>
+        <img src="https://images.unsplash.com/photo-1606811841689-23dfddce3e95?auto=format&fit=crop&w=900&q=80" alt="Consulta de ${config.nombre}" loading="lazy">
       </div>
     </div>
   `;
@@ -193,7 +199,7 @@ function renderTeam() {
       <div class="grid grid-2">
         ${config.equipo.map(miembro => `
           <div class="team-member">
-            <div class="team-member-avatar">${miembro.iniciales}</div>
+            <div class="team-member-avatar">${miembro.foto ? `<img src="${miembro.foto}" alt="${miembro.nombre}" loading="lazy">` : miembro.iniciales}</div>
             <div class="team-member-info">
               <h3>${miembro.nombre}</h3>
               <div class="team-member-role">${miembro.rol}</div>

@@ -1,19 +1,24 @@
 :root {
-  --primary: #000000;
-  --accent: #FFFFFF;
-  --bg: #FFFFFF;
-  --text: #000000;
-  --text-light: #666666;
-  --text-lighter: #999999;
-  --border-light: rgba(0,0,0,0.1);
-  --bg-light: #F9F9F9;
-  --glass: rgba(255,255,255,0.95);
-  --glass-border: rgba(0,0,0,0.1);
+  --primary: #5B7B63;
+  --primary-dark: #3F5A46;
+  --primary-light: #8FA893;
+  --accent: #C08A45;
+  --accent-dark: #9C6C32;
 
-  /* Accent colors for interactive elements */
-  --accent-blue: #0066CC;
-  --accent-green: #22C55E;
-  --accent-orange: #F97316;
+  --bg: #FBF8F2;
+  --text: #2E3328;
+  --text-light: #5C6356;
+  --text-lighter: #8A9083;
+  --border-light: rgba(46,51,40,0.10);
+  --bg-light: #F3EDE1;
+  --bg-elevated: #FFFFFF;
+  --glass: rgba(251,248,242,0.95);
+  --glass-border: rgba(46,51,40,0.08);
+
+  /* Accent colors for interactive elements (aliased to the palette above) */
+  --accent-blue: var(--primary);
+  --accent-green: var(--accent);
+  --accent-orange: var(--accent-dark);
 
   /* Spacing */
   --spacing-xs: 0.25rem;
@@ -33,7 +38,8 @@
   --radius-full: 9999px;
 
   /* Font */
-  --font-base: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+  --font-heading: 'Fraunces', 'Georgia', serif;
+  --font-base: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
   --font-mono: 'SF Mono', Monaco, 'Cascadia Code', 'Roboto Mono', Consolas, monospace;
 
   /* Line height */
@@ -42,8 +48,8 @@
   --line-height-relaxed: 1.75;
 
   /* Shadow */
-  --shadow-sm: 0 2px 4px rgba(0,0,0,0.1);
-  --shadow-md: 0 4px 12px rgba(0,0,0,0.15);
-  --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
-  --shadow-xl: 0 20px 60px rgba(0,0,0,0.2);
+  --shadow-sm: 0 2px 4px rgba(46,51,40,0.08);
+  --shadow-md: 0 4px 12px rgba(46,51,40,0.12);
+  --shadow-lg: 0 10px 40px rgba(46,51,40,0.14);
+  --shadow-xl: 0 20px 60px rgba(46,51,40,0.18);
 }

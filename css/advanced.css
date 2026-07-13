@@ -27,7 +27,7 @@
   position: absolute;
   top: 100%;
   left: 0;
-  background: white;
+  background: var(--bg-elevated);
   min-width: 200px;
   border: 1px solid var(--border-light);
   border-radius: var(--radius-lg);
@@ -97,7 +97,7 @@
     top: 100%;
     left: 0;
     right: 0;
-    background: white;
+    background: var(--bg-elevated);
     border-top: 1px solid var(--border-light);
     gap: 0;
   }
@@ -153,7 +153,7 @@
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-3xl);
-  background-color: #ddd;
+  background-color: var(--bg-light);
   aspect-ratio: 1;
   cursor: ew-resize;
   user-select: none;
@@ -217,8 +217,9 @@
 }
 
 .slider-text h2 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 2.125rem;
+  font-weight: 500;
   margin-bottom: var(--spacing-lg);
   color: var(--text);
 }
@@ -251,8 +252,9 @@
 }
 
 .gallery-header h2 {
+  font-family: var(--font-heading);
   font-size: 2.5rem;
-  font-weight: 700;
+  font-weight: 500;
   margin-bottom: var(--spacing-md);
   color: var(--text);
 }
@@ -280,7 +282,7 @@
   position: relative;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  background: #ddd;
+  background: var(--bg-light);
   aspect-ratio: 1;
   cursor: pointer;
 }
@@ -359,8 +361,9 @@
 }
 
 .faq-header h2 {
-  font-size: 2rem;
-  font-weight: 700;
+  font-family: var(--font-heading);
+  font-size: 2.125rem;
+  font-weight: 500;
   margin-bottom: var(--spacing-md);
   color: var(--text);
 }
@@ -381,7 +384,7 @@
   justify-content: space-between;
   cursor: pointer;
   padding: var(--spacing-md);
-  background-color: white;
+  background-color: var(--bg-elevated);
   border-radius: var(--radius-lg);
   transition: background-color 0.2s;
   user-select: none;
@@ -392,8 +395,9 @@
 }
 
 .faq-question h3 {
-  font-size: 1rem;
-  font-weight: 600;
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 500;
   color: var(--text);
   margin: 0;
 }

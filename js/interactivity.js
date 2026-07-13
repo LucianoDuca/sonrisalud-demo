@@ -191,8 +191,8 @@ function renderBeforeAfterSlider(config) {
   section.innerHTML = `
     <div class="slider-content">
       <div class="slider-container">
-        <img src="https://via.placeholder.com/500x500?text=Antes" alt="Antes" class="slider-image before">
-        <img src="https://via.placeholder.com/500x500?text=Después" alt="Después" class="slider-image after">
+        <img src="https://images.unsplash.com/photo-1541599468348-e96984315921?auto=format&fit=crop&w=600&q=80" alt="Antes" class="slider-image before">
+        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80" alt="Después" class="slider-image after">
         <div class="slider-handle"></div>
       </div>
 
@@ -212,17 +212,21 @@ function renderGallery(config) {
   const section = document.querySelector('.gallery');
   if (!section) return;
 
-  // Sample gallery data - replace with real data if available
-  const cases = [
-    { before: 'Caso 1 Antes', after: 'Caso 1 Después' },
-    { before: 'Caso 2 Antes', after: 'Caso 2 Después' },
-    { before: 'Caso 3 Antes', after: 'Caso 3 Después' },
-    { before: 'Caso 4 Antes', after: 'Caso 4 Después' },
-    { before: 'Caso 5 Antes', after: 'Caso 5 Después' },
-    { before: 'Caso 6 Antes', after: 'Caso 6 Después' },
-    { before: 'Caso 7 Antes', after: 'Caso 7 Después' },
-    { before: 'Caso 8 Antes', after: 'Caso 8 Después' },
+  // Curated smile/dental Unsplash photos used as before/after pairs for the demo
+  const photoIds = [
+    '1571019613454-1cb2f99b2d8b',
+    '1606811841689-23dfddce3e95',
+    '1588776814546-1ffcf47267a5',
+    '1609840114035-3c981b782dfe',
+    '1516069677018-378515003435',
+    '1601058268499-e52658b8bb88',
+    '1581585386362-e2b6dfd1c4b3',
+    '1522336572468-97b06e8ef143',
   ];
+  const cases = photoIds.map((id, index) => ({
+    before: `https://images.unsplash.com/photo-${photoIds[(index + 4) % photoIds.length]}?auto=format&fit=crop&w=500&q=80`,
+    after: `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=500&q=80`,
+  }));
 
   let galleryHTML = `
     <div class="gallery-content">
@@ -237,8 +241,8 @@ function renderGallery(config) {
   cases.forEach((caseItem, index) => {
     galleryHTML += `
       <div class="gallery-item">
-        <img src="https://via.placeholder.com/400x400?text=${caseItem.before}" alt="${caseItem.before}" class="gallery-item-image gallery-item-before">
-        <img src="https://via.placeholder.com/400x400?text=${caseItem.after}" alt="${caseItem.after}" class="gallery-item-image gallery-item-after">
+        <img src="${caseItem.before}" alt="Antes - caso ${index + 1}" class="gallery-item-image gallery-item-before" loading="lazy">
+        <img src="${caseItem.after}" alt="Después - caso ${index + 1}" class="gallery-item-image gallery-item-after" loading="lazy">
         <div class="gallery-divider"></div>
         <div class="gallery-toggle">⟳</div>
       </div>

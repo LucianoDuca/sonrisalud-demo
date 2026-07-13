@@ -4,7 +4,7 @@ const procedures = {
   implantes: {
     titulo: "Implantes Dentales",
     subtitulo: "Cirugía guiada 3D para implantes más precisos y seguros",
-    imagen: "https://via.placeholder.com/600x400?text=Implantes+Dentales",
+    imagen: "https://images.unsplash.com/photo-1609840114035-3c981b782dfe?auto=format&fit=crop&w=700&q=80",
     descripcion: "Utilizamos cirugía guiada y planificación digital avanzada con guías impresas en 3D para lograr implantes más precisos, seguros y estables, con una experiencia más cómoda para el paciente.",
     beneficios: [
       "Precisión milimétrica en la colocación",
@@ -26,7 +26,7 @@ const procedures = {
   ortodoncia: {
     titulo: "Ortodoncia Invisible",
     subtitulo: "Alinea tus dientes sin brackets metálicos",
-    imagen: "https://via.placeholder.com/600x400?text=Ortodoncia+Invisible",
+    imagen: "https://images.unsplash.com/photo-1541599468348-e96984315921?auto=format&fit=crop&w=700&q=80",
     descripcion: "Las férulas transparentes personalizadas alinean gradualmente tus dientes de forma imperceptible. Cómodo, estético y efectivo para pacientes de todas las edades.",
     beneficios: [
       "Totalmente invisible",
@@ -48,7 +48,7 @@ const procedures = {
   blanqueamiento: {
     titulo: "Blanqueamiento Dental",
     subtitulo: "Resultados visibles desde la primera sesión",
-    imagen: "https://via.placeholder.com/600x400?text=Blanqueamiento+Dental",
+    imagen: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=700&q=80",
     descripcion: "Técnicas seguras de blanqueamiento profesional que aclaran tus dientes varios tonos, con resultados duraderos y sin dañar el esmalte.",
     beneficios: [
       "Resultados inmediatos",
@@ -70,7 +70,7 @@ const procedures = {
   endodoncia: {
     titulo: "Tratamiento de Conducto",
     subtitulo: "Salva tu diente sin dolor",
-    imagen: "https://via.placeholder.com/600x400?text=Endodoncia",
+    imagen: "https://images.unsplash.com/photo-1516069677018-378515003435?auto=format&fit=crop&w=700&q=80",
     descripcion: "Con tecnología moderna y anestesia efectiva, realizamos tratamientos de conducto sin dolor. Salva tu diente de forma segura y definitiva.",
     beneficios: [
       "Salva tu diente natural",
@@ -92,7 +92,7 @@ const procedures = {
   periodoncia: {
     titulo: "Tratamiento de Encías",
     subtitulo: "Recupera la salud de tus encías",
-    imagen: "https://via.placeholder.com/600x400?text=Periodoncia",
+    imagen: "https://images.unsplash.com/photo-1601058268499-e52658b8bb88?auto=format&fit=crop&w=700&q=80",
     descripcion: "Tratamientos preventivos y correctivos para problemas de encías, desde limpiezas hasta cirugía periodontal según sea necesario.",
     beneficios: [
       "Previene la pérdida de dientes",
@@ -114,7 +114,7 @@ const procedures = {
   estetica: {
     titulo: "Estética Dental",
     subtitulo: "Diseño de sonrisa personalizado",
-    imagen: "https://via.placeholder.com/600x400?text=Estética+Dental",
+    imagen: "https://images.unsplash.com/photo-1522336572468-97b06e8ef143?auto=format&fit=crop&w=700&q=80",
     descripcion: "Carillas de porcelana y diseño de sonrisa personalizado para lograr la sonrisa de tus sueños con resultados naturales y duraderos.",
     beneficios: [
       "Apariencia completamente natural",
@@ -144,10 +144,10 @@ function renderProcedurePage(procedureKey) {
   let html = `
     <div class="procedure-page page-transition">
       <!-- Hero Section -->
-      <section class="procedure-hero" style="background: linear-gradient(135deg, #1F2937 0%, #374151 100%);">
+      <section class="procedure-hero" style="background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);">
         <div class="container" style="max-width: 1400px; margin: 0 auto; padding: var(--spacing-4xl) var(--spacing-lg); color: white;">
           <a href="#" class="back-button" onclick="location.reload(); return false;" style="color: rgba(255,255,255,0.7); text-decoration: none; margin-bottom: var(--spacing-lg); display: inline-block;">← Volver</a>
-          <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: var(--spacing-md);">${procedure.titulo}</h1>
+          <h1 style="font-family: var(--font-heading); font-size: 3rem; font-weight: 500; margin-bottom: var(--spacing-md);">${procedure.titulo}</h1>
           <p style="font-size: 1.25rem; color: rgba(255,255,255,0.9); max-width: 600px;">${procedure.subtitulo}</p>
         </div>
       </section>
@@ -160,9 +160,9 @@ function renderProcedurePage(procedureKey) {
               <img src="${procedure.imagen}" alt="${procedure.titulo}" style="width: 100%; border-radius: var(--radius-3xl); box-shadow: var(--shadow-lg);">
             </div>
             <div>
-              <h2 style="font-size: 1.75rem; font-weight: 700; margin-bottom: var(--spacing-lg); color: var(--text);">${procedure.descripcion}</h2>
+              <h2 style="font-family: var(--font-heading); font-size: 1.75rem; font-weight: 500; margin-bottom: var(--spacing-lg); color: var(--text);">${procedure.descripcion}</h2>
 
-              <h3 style="font-size: 1.125rem; font-weight: 600; margin-top: var(--spacing-2xl); margin-bottom: var(--spacing-md); color: var(--text);">Beneficios</h3>
+              <h3 style="font-family: var(--font-heading); font-size: 1.125rem; font-weight: 500; margin-top: var(--spacing-2xl); margin-bottom: var(--spacing-md); color: var(--text);">Beneficios</h3>
               <ul style="list-style: none; padding: 0;">
                 ${procedure.beneficios.map(b => `<li style="padding: var(--spacing-sm) 0; color: var(--text-light);"><span style="color: var(--accent-green); font-weight: 600;">✓</span> ${b}</li>`).join('')}
               </ul>
@@ -179,14 +179,14 @@ function renderProcedurePage(procedureKey) {
       <!-- Process Steps -->
       <section style="padding: var(--spacing-4xl) var(--spacing-lg); background-color: var(--bg-light);">
         <div class="container" style="max-width: 1400px; margin: 0 auto;">
-          <h2 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: var(--spacing-3xl); color: var(--text);">Proceso de Tratamiento</h2>
+          <h2 style="font-family: var(--font-heading); font-size: 2.125rem; font-weight: 500; text-align: center; margin-bottom: var(--spacing-3xl); color: var(--text);">Proceso de Tratamiento</h2>
           <div style="display: grid; gap: var(--spacing-2xl); grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
             ${procedure.proceso.map(p => `
-              <div style="padding: var(--spacing-lg); background: white; border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
-                <div style="width: 3rem; height: 3rem; background: var(--accent-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; margin-bottom: var(--spacing-md);">
+              <div style="padding: var(--spacing-lg); background: var(--bg-elevated); border-radius: var(--radius-lg); box-shadow: var(--shadow-sm);">
+                <div style="width: 3rem; height: 3rem; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 600; margin-bottom: var(--spacing-md);">
                   ${p.paso}
                 </div>
-                <h3 style="font-size: 1.125rem; font-weight: 600; margin-bottom: var(--spacing-sm); color: var(--text);">${p.titulo}</h3>
+                <h3 style="font-family: var(--font-heading); font-size: 1.125rem; font-weight: 500; margin-bottom: var(--spacing-sm); color: var(--text);">${p.titulo}</h3>
                 <p style="margin: 0; color: var(--text-light); font-size: 0.875rem;">${p.descripcion}</p>
               </div>
             `).join('')}
@@ -197,7 +197,7 @@ function renderProcedurePage(procedureKey) {
       <!-- CTA -->
       <section style="padding: var(--spacing-4xl) var(--spacing-lg);">
         <div class="container" style="max-width: 1400px; margin: 0 auto; text-align: center;">
-          <h2 style="font-size: 2rem; font-weight: 700; margin-bottom: var(--spacing-lg); color: var(--text);">¿Listo para transformar tu sonrisa?</h2>
+          <h2 style="font-family: var(--font-heading); font-size: 2.125rem; font-weight: 500; margin-bottom: var(--spacing-lg); color: var(--text);">¿Listo para transformar tu sonrisa?</h2>
           <p style="font-size: 1.125rem; color: var(--text-light); margin-bottom: var(--spacing-2xl);">Contacta con nosotros hoy para agendar tu consulta gratuita</p>
           <div style="display: flex; gap: var(--spacing-lg); justify-content: center; flex-wrap: wrap;">
             <a href="https://wa.me/34600000000?text=Hola%2C%20estoy%20interesado%20en%20${procedure.titulo}" target="_blank" class="btn btn-primary">

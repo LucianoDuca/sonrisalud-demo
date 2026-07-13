@@ -6,8 +6,8 @@
   "whatsapp": "34600000000",
   "whatsappMensaje": "Hola, quería pedir una cita en Clínica Dental Sonrisalud",
   "colores": {
-    "primario": "#000000",
-    "acento": "#FFFFFF"
+    "primario": "#5B7B63",
+    "acento": "#C08A45"
   },
   "servicios": [
     {
@@ -64,13 +64,15 @@
       "nombre": "Dra. Elena Vázquez",
       "rol": "Directora clínica · Odontóloga",
       "bio": "Más de 15 años de experiencia en implantología y estética dental en Salamanca.",
-      "iniciales": "EV"
+      "iniciales": "EV",
+      "foto": "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&w=300&q=80"
     },
     {
       "nombre": "Dr. Marcos Ibáñez",
       "rol": "Ortodoncista",
       "bio": "Especialista en ortodoncia invisible, dedicado a que cada paciente sonría con confianza.",
-      "iniciales": "MI"
+      "iniciales": "MI",
+      "foto": "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=300&q=80"
     }
   ],
   "direccion": "Calle Toro 45, 37001 Salamanca",

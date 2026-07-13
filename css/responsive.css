@@ -101,12 +101,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1F2937;
-    --text: #F3F4F6;
-    --text-light: #D1D5DB;
-    --text-lighter: #9CA3AF;
-    --bg-light: #374151;
-    --border-light: rgba(255, 255, 255, 0.1);
+    --bg: #232A22;
+    --text: #F0EEE6;
+    --text-light: #C7CDC2;
+    --text-lighter: #9CA495;
+    --bg-light: #2E362B;
+    --bg-elevated: #2E362B;
+    --border-light: rgba(240, 238, 230, 0.1);
   }
 
   body {
@@ -115,7 +116,7 @@
   }
 
   header {
-    background: rgba(31, 41, 55, 0.98);
+    background: rgba(35, 42, 34, 0.98);
     border-bottom-color: var(--border-light);
   }
 
@@ -123,7 +124,7 @@
   .service-card,
   .review-card,
   .team-member {
-    background-color: #374151;
+    background-color: #2E362B;
     border-color: var(--border-light);
   }
 
@@ -131,11 +132,11 @@
   .service-card:hover,
   .review-card:hover,
   .team-member:hover {
-    background-color: #4B5563;
+    background-color: #3A4437;
   }
 
   .badge {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(240, 238, 230, 0.1);
     color: var(--text);
   }
 
