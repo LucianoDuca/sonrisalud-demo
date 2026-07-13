@@ -6,8 +6,8 @@
   "whatsapp": "34600000000",
   "whatsappMensaje": "Hola, quería pedir una cita en Clínica Dental Sonrisalud",
   "colores": {
-    "primario": "#0E7C7B",
-    "acento": "#F4A259"
+    "primario": "#000000",
+    "acento": "#FFFFFF"
   },
   "servicios": [
     {

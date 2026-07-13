@@ -1,0 +1,158 @@
+/* Mobile First - All base styles are already mobile-optimized */
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  body {
+    font-size: 1rem;
+  }
+
+  .container {
+    padding: 0 var(--spacing-xl);
+  }
+
+  .section-header-title {
+    font-size: 2.25rem;
+  }
+
+  .hero-text h1 {
+    font-size: 2.5rem;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-4 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .header-container {
+    padding: var(--spacing-lg) var(--spacing-2xl);
+  }
+
+  .container {
+    padding: 0 var(--spacing-2xl);
+  }
+
+  .section-header-title {
+    font-size: 2.75rem;
+  }
+
+  .hero-text h1 {
+    font-size: 3rem;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  .grid-4 {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+}
+
+/* Large desktop and up */
+@media (min-width: 1280px) {
+  body {
+    font-size: 1.0625rem;
+  }
+
+  .section-header-title {
+    font-size: 3rem;
+  }
+
+  .hero-text h1 {
+    font-size: 3.5rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  header,
+  footer,
+  .demo-banner {
+    display: none;
+  }
+
+  body {
+    background: white;
+  }
+
+  .card {
+    page-break-inside: avoid;
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1F2937;
+    --text: #F3F4F6;
+    --text-light: #D1D5DB;
+    --text-lighter: #9CA3AF;
+    --bg-light: #374151;
+    --border-light: rgba(255, 255, 255, 0.1);
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+  }
+
+  header {
+    background: rgba(31, 41, 55, 0.98);
+    border-bottom-color: var(--border-light);
+  }
+
+  .card,
+  .service-card,
+  .review-card,
+  .team-member {
+    background-color: #374151;
+    border-color: var(--border-light);
+  }
+
+  .card:hover,
+  .service-card:hover,
+  .review-card:hover,
+  .team-member:hover {
+    background-color: #4B5563;
+  }
+
+  .badge {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--text);
+  }
+
+  .section-header-description {
+    color: var(--text-light);
+  }
+
+  .service-title,
+  .section-header-title,
+  .location-info h2 {
+    color: var(--text);
+  }
+
+  .service-description,
+  .review-text,
+  .team-member-bio,
+  .location-detail-content dt {
+    color: var(--text-light);
+  }
+}
