@@ -209,6 +209,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Stop the browser's native image-drag ghost (white flicker) while dragging */
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .slider-image.before {
@@ -341,6 +345,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  /* Stop the browser's native image-drag ghost (white flicker) while dragging */
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 .gallery-item-before {
