@@ -237,8 +237,8 @@
 /* Floating WhatsApp button */
 .whatsapp-fab {
   position: fixed;
-  right: 1.6rem;
-  bottom: 1.6rem;
+  right: 2.5rem;
+  bottom: 2.5rem;
   z-index: 50;
   display: flex;
   align-items: center;
@@ -289,7 +289,7 @@
    WhatsApp button above it while the banner is open to avoid overlap. */
 @media (max-width: 560px) {
   .cookie-banner.open ~ .whatsapp-fab {
-    bottom: calc(1.6rem + 15rem);
+    bottom: calc(2.5rem + 15rem);
   }
 }
 

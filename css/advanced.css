@@ -329,7 +329,9 @@
   background: var(--bg-light);
   aspect-ratio: 4 / 3;
   max-height: 320px;
-  cursor: pointer;
+  cursor: ew-resize;
+  touch-action: none;
+  user-select: none;
 }
 
 .gallery-item-image {
@@ -348,12 +350,6 @@
 .gallery-item-after {
   z-index: 2;
   clip-path: inset(0 50% 0 0);
-  transition: clip-path 0.2s;
-}
-
-.gallery-item:hover .gallery-item-after,
-.gallery-item.revealed .gallery-item-after {
-  clip-path: inset(0 0 0 0);
 }
 
 .gallery-divider {
@@ -393,13 +389,8 @@
   background: var(--primary);
 }
 
-.gallery-item:hover .gallery-toggle,
-.gallery-item.revealed .gallery-toggle {
+.gallery-item:hover .gallery-toggle {
   opacity: 1;
-}
-
-.gallery-item.revealed .gallery-toggle {
-  transform: translate(-50%, -50%) rotate(180deg);
 }
 
 /* FAQ */

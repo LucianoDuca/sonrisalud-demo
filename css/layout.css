@@ -186,8 +186,10 @@ footer {
 .footer-nav {
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: var(--spacing-sm);
   font-size: 0.875rem;
+  font-weight: 400;
 }
 
 .footer-nav a {

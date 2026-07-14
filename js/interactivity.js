@@ -126,27 +126,42 @@ function initGallery() {
 
   galleryItems.forEach(item => {
     const afterImage = item.querySelector('.gallery-item-after');
+    const divider = item.querySelector('.gallery-divider');
+    const toggle = item.querySelector('.gallery-toggle');
     if (!afterImage) return;
 
-    // Desktop: reveal the "after" photo as the pointer moves across the image
-    item.addEventListener('mousemove', (e) => {
+    let dragging = false;
+
+    // Each gallery case is its own before/after slider. A single click/tap
+    // sets the split at that point (works on press) and dragging compares
+    // continuously. Pointer Events cover mouse, touch and pen.
+    function setSplit(clientX) {
       const rect = item.getBoundingClientRect();
-      const x = e.clientX - rect.left;
+      const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
       const percentage = (x / rect.width) * 100;
       afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
+      if (divider) divider.style.left = percentage + '%';
+      if (toggle) toggle.style.left = percentage + '%';
+    }
+
+    item.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      try { item.setPointerCapture(e.pointerId); } catch (_) {}
+      setSplit(e.clientX);
     });
 
-    item.addEventListener('mouseleave', () => {
-      item.classList.remove('revealed');
-      afterImage.style.clipPath = 'inset(0 50% 0 0)';
+    item.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      setSplit(e.clientX);
     });
 
-    // Touch/mobile: mousemove never fires, so tapping the toggle button
-    // flips fully between the "before" and "after" photo instead.
-    item.addEventListener('click', () => {
-      const revealed = item.classList.toggle('revealed');
-      afterImage.style.clipPath = revealed ? 'inset(0 0 0 0)' : 'inset(0 50% 0 0)';
-    });
+    function endDrag(e) {
+      dragging = false;
+      try { item.releasePointerCapture(e.pointerId); } catch (_) {}
+    }
+
+    item.addEventListener('pointerup', endDrag);
+    item.addEventListener('pointercancel', endDrag);
   });
 }
 
