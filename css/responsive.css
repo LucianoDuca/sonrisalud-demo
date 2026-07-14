@@ -11,11 +11,11 @@
   }
 
   .section-header-title {
-    font-size: 2.25rem;
+    font-size: 2rem;
   }
 
   .hero-text h1 {
-    font-size: 2.5rem;
+    font-size: 2.125rem;
   }
 
   .grid-2 {
@@ -42,11 +42,11 @@
   }
 
   .section-header-title {
-    font-size: 2.75rem;
+    font-size: 2.25rem;
   }
 
   .hero-text h1 {
-    font-size: 3rem;
+    font-size: 2.375rem;
   }
 
   .grid-3 {
@@ -65,11 +65,11 @@
   }
 
   .section-header-title {
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
 
   .hero-text h1 {
-    font-size: 3.5rem;
+    font-size: 2.625rem;
   }
 }
 
@@ -96,64 +96,5 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #232A22;
-    --text: #F0EEE6;
-    --text-light: #C7CDC2;
-    --text-lighter: #9CA495;
-    --bg-light: #2E362B;
-    --bg-elevated: #2E362B;
-    --border-light: rgba(240, 238, 230, 0.1);
-  }
-
-  body {
-    background-color: var(--bg);
-    color: var(--text);
-  }
-
-  header {
-    background: rgba(35, 42, 34, 0.98);
-    border-bottom-color: var(--border-light);
-  }
-
-  .card,
-  .service-card,
-  .review-card,
-  .team-member {
-    background-color: #2E362B;
-    border-color: var(--border-light);
-  }
-
-  .card:hover,
-  .service-card:hover,
-  .review-card:hover,
-  .team-member:hover {
-    background-color: #3A4437;
-  }
-
-  .badge {
-    background-color: rgba(240, 238, 230, 0.1);
-    color: var(--text);
-  }
-
-  .section-header-description {
-    color: var(--text-light);
-  }
-
-  .service-title,
-  .section-header-title,
-  .location-info h2 {
-    color: var(--text);
-  }
-
-  .service-description,
-  .review-text,
-  .team-member-bio,
-  .location-detail-content dt {
-    color: var(--text-light);
   }
 }

@@ -130,10 +130,10 @@
 /* Glow animation */
 @keyframes glow {
   0%, 100% {
-    box-shadow: 0 0 5px rgba(91, 123, 99, 0.5);
+    box-shadow: 0 0 5px rgba(30, 118, 172, 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(91, 123, 99, 0.8);
+    box-shadow: 0 0 20px rgba(30, 118, 172, 0.8);
   }
 }
 

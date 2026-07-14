@@ -1,0 +1,205 @@
+/* Procedure detail pages (implantes.html, ortodoncia.html, etc.) */
+
+.procedure-hero {
+  background: var(--bg);
+  color: var(--text);
+  padding: var(--spacing-4xl) var(--spacing-lg);
+}
+
+.procedure-hero-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.back-button {
+  display: inline-block;
+  color: var(--text-light);
+  text-decoration: none;
+  margin-bottom: var(--spacing-lg);
+}
+
+.back-button:hover {
+  color: var(--primary);
+}
+
+.procedure-hero h1 {
+  font-family: var(--font-heading);
+  font-size: 1.875rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-md);
+}
+
+@media (min-width: 768px) {
+  .procedure-hero h1 {
+    font-size: 2.375rem;
+  }
+}
+
+.procedure-hero p {
+  font-size: 1.125rem;
+  color: var(--text-light);
+  max-width: 600px;
+}
+
+.procedure-main {
+  padding: var(--spacing-4xl) var(--spacing-lg);
+}
+
+.procedure-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--spacing-2xl);
+  grid-template-columns: 1fr;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .procedure-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.procedure-image img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  border-radius: var(--radius-3xl);
+  box-shadow: var(--shadow-lg);
+}
+
+.procedure-description {
+  font-family: var(--font-heading);
+  font-size: 1.3125rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text);
+}
+
+.procedure-benefits-title {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-top: var(--spacing-2xl);
+  margin-bottom: var(--spacing-md);
+  color: var(--text);
+}
+
+.procedure-benefits {
+  list-style: none;
+}
+
+.procedure-benefits li {
+  padding: var(--spacing-sm) 0;
+  color: var(--text-light);
+}
+
+.procedure-benefits li::before {
+  content: '✓';
+  color: var(--accent-green);
+  font-weight: 600;
+  margin-right: var(--spacing-sm);
+}
+
+.procedure-summary {
+  margin-top: var(--spacing-2xl);
+  padding: var(--spacing-lg);
+  background-color: var(--bg-light);
+  border-radius: var(--radius-lg);
+  color: var(--text-light);
+}
+
+.procedure-summary p + p {
+  margin-top: var(--spacing-sm);
+}
+
+.procedure-process {
+  padding: var(--spacing-4xl) var(--spacing-lg);
+  background-color: var(--bg-light);
+}
+
+.procedure-process-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.procedure-process h2 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 500;
+  text-align: center;
+  margin-bottom: var(--spacing-3xl);
+  color: var(--text);
+}
+
+.process-grid {
+  display: grid;
+  gap: var(--spacing-2xl);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.process-step {
+  padding: var(--spacing-lg);
+  background: var(--bg-elevated);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.process-step-number {
+  width: 2.5rem;
+  height: 2.5rem;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: var(--spacing-md);
+}
+
+.process-step h3 {
+  font-family: var(--font-heading);
+  font-size: 1.125rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text);
+}
+
+.process-step p {
+  color: var(--text-light);
+  font-size: 0.875rem;
+}
+
+.procedure-cta {
+  padding: var(--spacing-4xl) var(--spacing-lg);
+  text-align: center;
+}
+
+.procedure-cta-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.procedure-cta h2 {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 500;
+  margin-bottom: var(--spacing-lg);
+  color: var(--text);
+}
+
+.procedure-cta p {
+  font-size: 1.125rem;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.procedure-cta-buttons {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  flex-wrap: wrap;
+}

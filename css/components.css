@@ -16,12 +16,12 @@
 }
 
 .btn-primary {
-  background-color: var(--accent);
-  color: var(--text);
+  background-color: var(--primary-dark);
+  color: #FFFFFF;
 }
 
 .btn-primary:hover {
-  background-color: var(--accent-dark);
+  background-color: var(--primary);
   color: white;
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
@@ -80,7 +80,7 @@
 /* Badge */
 .badge {
   display: inline-block;
-  background-color: rgba(46, 51, 40, 0.08);
+  background-color: rgba(18, 63, 110, 0.08);
   color: var(--text);
   padding: var(--spacing-xs) var(--spacing-md);
   border-radius: var(--radius-full);
@@ -91,7 +91,7 @@
 }
 
 .badge-primary {
-  background-color: rgba(91, 123, 99, 0.12);
+  background-color: rgba(18, 63, 110, 0.12);
   color: var(--primary-dark);
 }
 
@@ -114,7 +114,7 @@
 }
 
 .star-empty {
-  color: rgba(46, 51, 40, 0.2);
+  color: rgba(18, 63, 110, 0.2);
 }
 
 /* Section header */
@@ -134,16 +134,10 @@
 
 .section-header-title {
   font-family: var(--font-heading);
-  font-size: 2.125rem;
+  font-size: 1.75rem;
   font-weight: 500;
   color: var(--text);
   line-height: var(--line-height-tight);
-}
-
-@media (min-width: 768px) {
-  .section-header-title {
-    font-size: 2.5rem;
-  }
 }
 
 .section-header-description {
@@ -153,6 +147,150 @@
   max-width: 42rem;
   margin-left: auto;
   margin-right: auto;
+}
+
+/* Cookie banner */
+.cookie-banner {
+  position: fixed;
+  bottom: var(--spacing-md);
+  left: var(--spacing-md);
+  right: auto;
+  z-index: 70;
+  width: calc(100% - 2 * var(--spacing-md));
+  max-width: 22rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.92);
+  padding: 1.25rem;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(20px);
+  transform: translateY(150%);
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+}
+
+.cookie-banner.open {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.cookie-title {
+  font-family: var(--font-heading);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.35rem;
+}
+
+.cookie-text {
+  font-size: 0.85rem;
+  color: var(--text-light);
+  line-height: var(--line-height-relaxed);
+  margin-bottom: var(--spacing-md);
+}
+
+.cookie-text a {
+  font-weight: 500;
+  text-decoration: underline;
+  color: var(--primary);
+}
+
+.cookie-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+.btn-cookie-reject {
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-light);
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-light);
+  background: transparent;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.btn-cookie-reject:hover {
+  background: var(--bg-light);
+  border-color: var(--text-lighter);
+}
+
+.btn-cookie-accept {
+  border-radius: var(--radius-full);
+  border: none;
+  padding: var(--spacing-sm) var(--spacing-lg);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #FFFFFF;
+  background: var(--primary-dark);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-cookie-accept:hover {
+  background: var(--primary);
+}
+
+/* Floating WhatsApp button */
+.whatsapp-fab {
+  position: fixed;
+  right: 1.6rem;
+  bottom: 1.6rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  background: #25D366;
+  color: #FFFFFF;
+  box-shadow: var(--shadow-lg);
+  transition: transform 0.2s;
+}
+
+.whatsapp-fab:hover {
+  transform: scale(1.06);
+}
+
+.whatsapp-fab:active {
+  transform: scale(0.95);
+}
+
+.whatsapp-fab svg {
+  position: relative;
+  z-index: 1;
+  width: 1.85rem;
+  height: 1.85rem;
+}
+
+.whatsapp-fab::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #25D366;
+  opacity: 0.7;
+  animation: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+  z-index: 0;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(1.9);
+    opacity: 0;
+  }
+}
+
+/* On small screens the cookie banner spans most of the width, so lift the
+   WhatsApp button above it while the banner is open to avoid overlap. */
+@media (max-width: 560px) {
+  .cookie-banner.open ~ .whatsapp-fab {
+    bottom: calc(1.6rem + 15rem);
+  }
 }
 
 /* Grid */

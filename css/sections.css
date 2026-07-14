@@ -2,9 +2,9 @@
 .hero {
   position: relative;
   overflow: hidden;
-  color: white;
+  color: var(--text);
   padding: var(--spacing-4xl) var(--spacing-lg);
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  background: var(--bg);
 }
 
 .hero-content {
@@ -24,22 +24,16 @@
 
 .hero-text h1 {
   font-family: var(--font-heading);
-  font-size: 2.25rem;
+  font-size: 1.875rem;
   font-weight: 500;
   line-height: var(--line-height-tight);
-  margin-bottom: var(--spacing-lg);
-}
-
-@media (min-width: 768px) {
-  .hero-text h1 {
-    font-size: 3.25rem;
-  }
+  margin-bottom: var(--spacing-md);
 }
 
 .hero-text p {
-  font-size: 1.125rem;
-  color: rgba(255, 255, 255, 0.9);
-  margin-bottom: var(--spacing-lg);
+  font-size: 1rem;
+  color: var(--text-light);
+  margin-bottom: var(--spacing-md);
   line-height: var(--line-height-relaxed);
 }
 
@@ -51,8 +45,8 @@
 
 .hero-badge {
   display: inline-block;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: white;
+  background-color: rgba(18, 63, 110, 0.08);
+  color: var(--primary-dark);
   padding: var(--spacing-sm) var(--spacing-lg);
   border-radius: var(--radius-full);
   font-size: 0.875rem;
@@ -75,17 +69,18 @@
   align-items: center;
   padding: 0;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--bg-light);
   border-radius: var(--radius-3xl);
-  min-height: 300px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  min-height: 220px;
+  max-height: 420px;
+  border: 1px solid var(--border-light);
   box-shadow: var(--shadow-lg);
 }
 
 .hero-image img {
   width: 100%;
   height: 100%;
-  min-height: 300px;
+  min-height: 220px;
   object-fit: cover;
   border-radius: var(--radius-3xl);
   display: block;
@@ -93,7 +88,7 @@
 
 .hero-image-placeholder {
   text-align: center;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-light);
   padding: var(--spacing-2xl);
 }
 
@@ -122,26 +117,26 @@
 }
 
 .service-icon {
-  width: 3rem;
-  height: 3rem;
+  width: 2.5rem;
+  height: 2.5rem;
   background-color: var(--accent-blue);
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   color: white;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   flex-shrink: 0;
 }
 
 .service-icon svg {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.25rem;
+  height: 1.25rem;
 }
 
 .service-title {
   font-family: var(--font-heading);
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   font-weight: 500;
   color: var(--text);
   margin-bottom: var(--spacing-sm);
@@ -233,8 +228,8 @@
 }
 
 .team-member-avatar {
-  width: 4rem;
-  height: 4rem;
+  width: 3.25rem;
+  height: 3.25rem;
   border-radius: 50%;
   background-color: var(--primary);
   color: white;
@@ -299,12 +294,12 @@
   border-radius: var(--radius-lg);
   overflow: hidden;
   border: 1px solid var(--border-light);
-  height: 300px;
+  height: 260px;
 }
 
 @media (min-width: 768px) {
   .location-map {
-    height: 400px;
+    height: 340px;
   }
 }
 
@@ -316,7 +311,7 @@
 
 .location-info h2 {
   font-family: var(--font-heading);
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-weight: 500;
   margin-bottom: var(--spacing-lg);
   color: var(--text);

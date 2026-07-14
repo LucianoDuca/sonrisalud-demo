@@ -1,79 +1,77 @@
-// Advanced interactivity for navbar, sliders, gallery, and FAQ
+// Site behavior: navbar, before/after slider, gallery hover, FAQ accordion, scroll reveal
 
-// ===== PROCEDURE MAPPING =====
-const procedureMapping = {
-  'Implantes': 'implantes',
-  'Limpiezas': null, // General info
-  'Empastes': null,
-  'Endodoncia': 'endodoncia',
-  'Blanqueamiento': 'blanqueamiento',
-  'Carillas': 'estetica',
-  'Diseño de sonrisa': 'estetica',
-  'Extracciones': null,
-  'Cirugía ósea': null
-};
+// ===== NAVBAR =====
+const NAV_BREAKPOINT = 1120;
 
-// ===== NAVBAR DROPDOWNS =====
 function initNavbar() {
   const menuToggle = document.getElementById('menuToggle');
   const navDesktop = document.querySelector('.nav-desktop');
   const dropdowns = document.querySelectorAll('.nav-dropdown');
 
+  function closeMobileMenu() {
+    if (!navDesktop) return;
+    navDesktop.classList.remove('active');
+    dropdowns.forEach(d => d.classList.remove('active'));
+  }
+
   // Mobile menu toggle
-  if (menuToggle) {
-    menuToggle.addEventListener('click', () => {
+  if (menuToggle && navDesktop) {
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
       navDesktop.classList.toggle('active');
     });
 
-    // Close menu when clicking on a link
+    // Close menu when clicking a real link (not a dropdown category label)
     document.querySelectorAll('.nav-link, .dropdown-item').forEach(link => {
       link.addEventListener('click', (e) => {
         const href = link.getAttribute('href');
         if (href && href !== '#') {
-          navDesktop.classList.remove('active');
+          closeMobileMenu();
         }
       });
+    });
+
+    // Close the mobile menu when clicking outside of it
+    document.addEventListener('click', (e) => {
+      if (!navDesktop.classList.contains('active')) return;
+      if (navDesktop.contains(e.target) || menuToggle.contains(e.target)) return;
+      closeMobileMenu();
+    });
+
+    // Reset menu state if the viewport crosses the nav breakpoint (e.g. rotating a tablet)
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > NAV_BREAKPOINT) {
+        closeMobileMenu();
+      }
     });
   }
 
-  // Mobile dropdown expansion
+  // Dropdown category labels only toggle their submenu (href="#", no real destination).
+  // Checked at click time, not at page load, so it keeps working if the window is resized.
   dropdowns.forEach(dropdown => {
     const navLink = dropdown.querySelector('.nav-link');
-    if (navLink && window.innerWidth <= 768) {
-      navLink.addEventListener('click', (e) => {
-        e.preventDefault();
-        dropdown.classList.toggle('active');
-      });
-    }
-  });
+    if (!navLink) return;
 
-  // Connect dropdown items to procedures
-  document.querySelectorAll('.dropdown-item').forEach(item => {
-    item.addEventListener('click', (e) => {
+    navLink.addEventListener('click', (e) => {
       e.preventDefault();
-      const procedureName = item.textContent.trim();
-      const procedureKey = procedureMapping[procedureName];
-
-      if (procedureKey && typeof renderProcedurePage === 'function') {
-        renderProcedurePage(procedureKey);
-      } else if (procedureName === 'Limpiezas' || procedureName === 'Empastes' || procedureName === 'Extracciones' || procedureName === 'Cirugía ósea') {
-        // Scroll to servicios section for general info
-        document.getElementById('servicios')?.scrollIntoView({ behavior: 'smooth' });
-      }
+      e.stopPropagation();
+      const isOpen = dropdown.classList.contains('active');
+      dropdowns.forEach(d => d.classList.remove('active'));
+      dropdown.classList.toggle('active', !isOpen);
     });
   });
 
-  // Connect main nav items
-  document.querySelectorAll('.nav-link').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href && href.startsWith('#') && href !== '#') {
-      link.addEventListener('click', (e) => {
-        const section = document.querySelector(href);
-        if (section) {
-          e.preventDefault();
-          section.scrollIntoView({ behavior: 'smooth' });
-        }
-      });
+  // Close any click-opened dropdown when clicking outside of it (desktop + mobile),
+  // so a toggled-open menu can't stay stuck after the pointer leaves.
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('.nav-dropdown')) return;
+    dropdowns.forEach(d => d.classList.remove('active'));
+  });
+
+  // Close open dropdowns with the Escape key for keyboard accessibility.
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      dropdowns.forEach(d => d.classList.remove('active'));
     }
   });
 }
@@ -85,59 +83,40 @@ function initBeforeAfterSlider() {
   sliders.forEach(slider => {
     const handle = slider.querySelector('.slider-handle');
     const afterImage = slider.querySelector('.slider-image.after');
-    let isActive = false;
-
     if (!handle || !afterImage) return;
 
-    function updateSlider(e) {
-      if (!isActive) return;
+    let dragging = false;
 
+    function setPercentage(clientX) {
       const rect = slider.getBoundingClientRect();
-      let x = e.clientX - rect.left;
-
-      // Handle touch events
-      if (e.touches) {
-        x = e.touches[0].clientX - rect.left;
-      }
-
-      x = Math.max(0, Math.min(x, rect.width));
+      const x = Math.max(0, Math.min(clientX - rect.left, rect.width));
       const percentage = (x / rect.width) * 100;
-
       handle.style.left = percentage + '%';
       afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
     }
 
-    // Mouse events
-    handle.addEventListener('mousedown', () => {
-      isActive = true;
+    // Pointer Events unify mouse, touch and pen. Dragging anywhere on the
+    // container works (not just the thin handle), which makes it usable on
+    // mobile. `touch-action: none` on .slider-container stops the page from
+    // scrolling while dragging.
+    slider.addEventListener('pointerdown', (e) => {
+      dragging = true;
+      try { slider.setPointerCapture(e.pointerId); } catch (_) {}
+      setPercentage(e.clientX);
     });
 
-    document.addEventListener('mouseup', () => {
-      isActive = false;
+    slider.addEventListener('pointermove', (e) => {
+      if (!dragging) return;
+      setPercentage(e.clientX);
     });
 
-    document.addEventListener('mousemove', updateSlider);
+    function endDrag(e) {
+      dragging = false;
+      try { slider.releasePointerCapture(e.pointerId); } catch (_) {}
+    }
 
-    // Touch events
-    handle.addEventListener('touchstart', () => {
-      isActive = true;
-    });
-
-    document.addEventListener('touchend', () => {
-      isActive = false;
-    });
-
-    document.addEventListener('touchmove', updateSlider);
-
-    // Click anywhere on slider to move handle
-    slider.addEventListener('click', (e) => {
-      const rect = slider.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const percentage = (x / rect.width) * 100;
-
-      handle.style.left = percentage + '%';
-      afterImage.style.clipPath = `inset(0 ${100 - percentage}% 0 0)`;
-    });
+    slider.addEventListener('pointerup', endDrag);
+    slider.addEventListener('pointercancel', endDrag);
   });
 }
 
@@ -149,6 +128,7 @@ function initGallery() {
     const afterImage = item.querySelector('.gallery-item-after');
     if (!afterImage) return;
 
+    // Desktop: reveal the "after" photo as the pointer moves across the image
     item.addEventListener('mousemove', (e) => {
       const rect = item.getBoundingClientRect();
       const x = e.clientX - rect.left;
@@ -157,7 +137,15 @@ function initGallery() {
     });
 
     item.addEventListener('mouseleave', () => {
+      item.classList.remove('revealed');
       afterImage.style.clipPath = 'inset(0 50% 0 0)';
+    });
+
+    // Touch/mobile: mousemove never fires, so tapping the toggle button
+    // flips fully between the "before" and "after" photo instead.
+    item.addEventListener('click', () => {
+      const revealed = item.classList.toggle('revealed');
+      afterImage.style.clipPath = revealed ? 'inset(0 0 0 0)' : 'inset(0 50% 0 0)';
     });
   });
 }
@@ -171,153 +159,9 @@ function initFAQ() {
     if (!question) return;
 
     question.addEventListener('click', () => {
-      // Close other items if desired (uncomment for accordion behavior)
-      // faqItems.forEach(otherItem => {
-      //   if (otherItem !== item) {
-      //     otherItem.classList.remove('active');
-      //   }
-      // });
-
       item.classList.toggle('active');
     });
   });
-}
-
-// ===== RENDER SECTIONS =====
-function renderBeforeAfterSlider(config) {
-  const section = document.querySelector('.before-after-slider');
-  if (!section) return;
-
-  section.innerHTML = `
-    <div class="slider-content">
-      <div class="slider-container">
-        <img src="https://images.unsplash.com/photo-1541599468348-e96984315921?auto=format&fit=crop&w=600&q=80" alt="Antes" class="slider-image before">
-        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?auto=format&fit=crop&w=600&q=80" alt="Después" class="slider-image after">
-        <div class="slider-handle"></div>
-      </div>
-
-      <div class="slider-text">
-        <h2>Galería de Sonrisas y Más</h2>
-        <p>El cambio de una sonrisa tiene un impacto significativo en la confianza y la salud oral general de alguien. ¡Vea algunos de estos impresionantes antes y después!</p>
-        <a href="#galeria" class="btn btn-primary slider-button">Ver más sonrisas</a>
-      </div>
-    </div>
-  `;
-
-  // Initialize slider after rendering
-  setTimeout(initBeforeAfterSlider, 0);
-}
-
-function renderGallery(config) {
-  const section = document.querySelector('.gallery');
-  if (!section) return;
-
-  // Curated smile/dental Unsplash photos used as before/after pairs for the demo
-  const photoIds = [
-    '1571019613454-1cb2f99b2d8b',
-    '1606811841689-23dfddce3e95',
-    '1588776814546-1ffcf47267a5',
-    '1609840114035-3c981b782dfe',
-    '1516069677018-378515003435',
-    '1601058268499-e52658b8bb88',
-    '1581585386362-e2b6dfd1c4b3',
-    '1522336572468-97b06e8ef143',
-  ];
-  const cases = photoIds.map((id, index) => ({
-    before: `https://images.unsplash.com/photo-${photoIds[(index + 4) % photoIds.length]}?auto=format&fit=crop&w=500&q=80`,
-    after: `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=500&q=80`,
-  }));
-
-  let galleryHTML = `
-    <div class="gallery-content">
-      <div class="gallery-header">
-        <h2>Algunos de Nuestros Casos Clínicos</h2>
-        <p>En esta sección mostramos varios de los trabajos que realizamos en nuestra clínica dental. Desliza en cada imagen para ver el cambio de sonrisas de nuestros pacientes.</p>
-      </div>
-
-      <div class="gallery-grid">
-  `;
-
-  cases.forEach((caseItem, index) => {
-    galleryHTML += `
-      <div class="gallery-item">
-        <img src="${caseItem.before}" alt="Antes - caso ${index + 1}" class="gallery-item-image gallery-item-before" loading="lazy">
-        <img src="${caseItem.after}" alt="Después - caso ${index + 1}" class="gallery-item-image gallery-item-after" loading="lazy">
-        <div class="gallery-divider"></div>
-        <div class="gallery-toggle">⟳</div>
-      </div>
-    `;
-  });
-
-  galleryHTML += `
-      </div>
-    </div>
-  `;
-
-  section.innerHTML = galleryHTML;
-
-  // Initialize gallery after rendering
-  setTimeout(initGallery, 0);
-}
-
-function renderFAQ(config) {
-  const section = document.querySelector('.faq');
-  if (!section) return;
-
-  const faqs = [
-    {
-      question: '¿Cuál es el costo de un implante dental?',
-      answer: 'El costo de un implante dental varía según el tipo y la complejidad del caso. Te recomendamos agendar una consulta para que podamos evaluar tu situación específica y brindarte un presupuesto personalizado.'
-    },
-    {
-      question: '¿Duele el tratamiento de ortodoncia?',
-      answer: 'La ortodoncia moderna es mucho menos incómoda que en el pasado. Durante el tratamiento puedes sentir una ligera presión, pero no dolor agudo. Nuestro equipo está capacitado para minimizar cualquier molestia.'
-    },
-    {
-      question: '¿Cuánto dura el blanqueamiento dental?',
-      answer: 'Los resultados del blanqueamiento dental pueden durar varios meses a un año, dependiendo de tus hábitos de higiene y consumo de alimentos/bebidas que manchan los dientes. Ofrecemos sesiones de mantenimiento.'
-    },
-    {
-      question: '¿Qué debo hacer después de una extracción?',
-      answer: 'Después de una extracción, es importante descansar y seguir las instrucciones específicas que te proporcionaremos. Evita enjuagues vigorosos, fuma, o usa popotes durante los primeros días.'
-    },
-    {
-      question: '¿Con qué frecuencia debo visitarte?',
-      answer: 'Se recomienda visitarnos cada 6 meses para limpiezas y revisiones regulares. Algunos pacientes con problemas específicos pueden necesitar más frecuencia.'
-    },
-    {
-      question: '¿Realizan trabajos de urgencia?',
-      answer: 'Sí, tenemos disponibilidad para emergencias dentales. Contacta directamente por teléfono o WhatsApp para informar sobre tu situación.'
-    }
-  ];
-
-  let faqHTML = `
-    <div class="faq-content">
-      <div class="faq-header">
-        <h2>Preguntas Frecuentes</h2>
-      </div>
-  `;
-
-  faqs.forEach((faq, index) => {
-    faqHTML += `
-      <div class="faq-item ${index === 0 ? 'active' : ''}">
-        <div class="faq-question">
-          <h3>${faq.question}</h3>
-          <span class="faq-toggle">▼</span>
-        </div>
-        <div class="faq-answer">${faq.answer}</div>
-      </div>
-    `;
-  });
-
-  faqHTML += `
-    </div>
-  `;
-
-  section.innerHTML = faqHTML;
-
-  // Initialize FAQ after rendering
-  setTimeout(initFAQ, 0);
 }
 
 // ===== SCROLL REVEAL ANIMATIONS =====
@@ -328,8 +172,6 @@ function initScrollReveal() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add('active');
-        // Optional: stop observing after reveal
-        // observer.unobserve(entry.target);
       }
     });
   }, {
@@ -342,16 +184,16 @@ function initScrollReveal() {
   });
 }
 
-// ===== SMOOTH SCROLL BEHAVIOR =====
+// ===== SMOOTH SCROLL (same-page anchors only) =====
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
       if (href === '#' || href === '') return;
 
-      e.preventDefault();
       const target = document.querySelector(href);
       if (target) {
+        e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }
     });
@@ -359,21 +201,11 @@ function initSmoothScroll() {
 }
 
 // ===== INITIALIZE ALL =====
-function initializeAdvancedFeatures(config) {
-  console.log('Initializing advanced features');
-  renderBeforeAfterSlider(config);
-  renderGallery(config);
-  renderFAQ(config);
+function initSite() {
   initNavbar();
-
-  // Initialize additional features
-  setTimeout(() => {
-    initScrollReveal();
-    initSmoothScroll();
-  }, 100);
-}
-
-// Export for use in main.js
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { initializeAdvancedFeatures, initScrollReveal, initSmoothScroll };
+  initBeforeAfterSlider();
+  initGallery();
+  initFAQ();
+  initScrollReveal();
+  initSmoothScroll();
 }

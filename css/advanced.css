@@ -28,19 +28,32 @@
   top: 100%;
   left: 0;
   background: var(--bg-elevated);
-  min-width: 200px;
+  min-width: 220px;
   border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
+  border-radius: 0;
   box-shadow: var(--shadow-lg);
   opacity: 0;
   visibility: hidden;
   transform: translateY(-10px);
-  transition: all 0.3s;
+  transition: opacity 0.25s, transform 0.25s, visibility 0.25s;
   z-index: 1000;
   margin-top: var(--spacing-sm);
 }
 
-.nav-dropdown:hover .dropdown-menu {
+/* Transparent hover bridge: fills the 8px gap between the nav link and the
+   menu so moving the cursor down doesn't cross a dead zone and close it. */
+.dropdown-menu::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--spacing-sm));
+  left: 0;
+  right: 0;
+  height: var(--spacing-sm);
+}
+
+.nav-dropdown:hover .dropdown-menu,
+.nav-dropdown:focus-within .dropdown-menu,
+.nav-dropdown.active .dropdown-menu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
@@ -58,11 +71,6 @@
 
 .dropdown-item:last-child {
   border-bottom: none;
-  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
-}
-
-.dropdown-item:first-child {
-  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
 }
 
 .dropdown-item:hover {
@@ -79,11 +87,16 @@
   cursor: pointer;
   padding: var(--spacing-sm);
   color: var(--text);
+  flex-shrink: 0;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1120px) {
   .menu-toggle {
     display: block;
+  }
+
+  .logo img {
+    width: 7.5rem;
   }
 
   .nav-desktop {
@@ -93,16 +106,25 @@
   .nav-desktop.active {
     display: flex;
     flex-direction: column;
+    align-items: stretch;
     position: absolute;
     top: 100%;
     left: 0;
     right: 0;
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
     background: var(--bg-elevated);
     border-top: 1px solid var(--border-light);
+    box-shadow: var(--shadow-lg);
     gap: 0;
   }
 
+  .nav-dropdown {
+    width: 100%;
+  }
+
   .nav-link {
+    display: block;
     padding: var(--spacing-md) var(--spacing-lg) !important;
     width: 100%;
     border-bottom: 1px solid var(--border-light);
@@ -117,8 +139,26 @@
     transition: all 0.3s;
     box-shadow: none;
     border: none;
-    border-left: 2px solid var(--accent-blue);
     margin: 0;
+    min-width: 0;
+    background: var(--bg-elevated);
+  }
+
+  /* Expanded submenu options read as regular full-width nav rows,
+     identical to the top-level links. */
+  .dropdown-item {
+    display: block;
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    font-size: 0.875rem;
+    color: var(--text-light);
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .dropdown-item:hover {
+    background: var(--bg-elevated);
+    color: var(--primary);
   }
 
   .nav-dropdown.active .dropdown-menu {
@@ -152,11 +192,14 @@
 .slider-container {
   position: relative;
   overflow: hidden;
+  width: 100%;
   border-radius: var(--radius-3xl);
   background-color: var(--bg-light);
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 3;
+  max-height: 380px;
   cursor: ew-resize;
   user-select: none;
+  touch-action: none;
 }
 
 .slider-image {
@@ -189,46 +232,45 @@
   cursor: ew-resize;
 }
 
+/* Simple round knob with a small dot in the center */
 .slider-handle::before {
   content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 3rem;
-  height: 3rem;
+  width: 1.6rem;
+  height: 1.6rem;
   background: white;
   border-radius: 50%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .slider-handle::after {
-  content: '◀ ▶';
+  content: '';
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 1rem;
-  color: var(--text);
-  font-weight: bold;
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--primary);
 }
 
 .slider-text h2 {
   font-family: var(--font-heading);
-  font-size: 2.125rem;
+  font-size: 1.75rem;
   font-weight: 500;
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
   color: var(--text);
 }
 
 .slider-text p {
-  font-size: 1rem;
+  font-size: 0.9375rem;
   color: var(--text-light);
   line-height: var(--line-height-relaxed);
-  margin-bottom: var(--spacing-lg);
+  margin-bottom: var(--spacing-md);
 }
 
 .slider-button {
@@ -253,9 +295,9 @@
 
 .gallery-header h2 {
   font-family: var(--font-heading);
-  font-size: 2.5rem;
+  font-size: 1.875rem;
   font-weight: 500;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: var(--spacing-sm);
   color: var(--text);
 }
 
@@ -264,11 +306,12 @@
   margin: 0 auto;
   color: var(--text-light);
   line-height: var(--line-height-relaxed);
+  font-size: 0.9375rem;
 }
 
 .gallery-grid {
   display: grid;
-  gap: var(--spacing-lg);
+  gap: var(--spacing-md);
   grid-template-columns: repeat(2, 1fr);
 }
 
@@ -281,9 +324,11 @@
 .gallery-item {
   position: relative;
   overflow: hidden;
+  width: 100%;
   border-radius: var(--radius-lg);
   background: var(--bg-light);
-  aspect-ratio: 1;
+  aspect-ratio: 4 / 3;
+  max-height: 320px;
   cursor: pointer;
 }
 
@@ -306,7 +351,8 @@
   transition: clip-path 0.2s;
 }
 
-.gallery-item:hover .gallery-item-after {
+.gallery-item:hover .gallery-item-after,
+.gallery-item.revealed .gallery-item-after {
   clip-path: inset(0 0 0 0);
 }
 
@@ -327,21 +373,33 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 4;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 1.6rem;
+  height: 1.6rem;
   background: white;
   border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.25rem;
-  color: var(--text);
-  opacity: 0.8;
-  transition: opacity 0.2s;
+  opacity: 0.9;
+  transition: opacity 0.2s, transform 0.3s;
 }
 
-.gallery-item:hover .gallery-toggle {
+.gallery-toggle::after {
+  content: '';
+  width: 0.45rem;
+  height: 0.45rem;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.gallery-item:hover .gallery-toggle,
+.gallery-item.revealed .gallery-toggle {
   opacity: 1;
+}
+
+.gallery-item.revealed .gallery-toggle {
+  transform: translate(-50%, -50%) rotate(180deg);
 }
 
 /* FAQ */
@@ -362,7 +420,7 @@
 
 .faq-header h2 {
   font-family: var(--font-heading);
-  font-size: 2.125rem;
+  font-size: 1.75rem;
   font-weight: 500;
   margin-bottom: var(--spacing-md);
   color: var(--text);
