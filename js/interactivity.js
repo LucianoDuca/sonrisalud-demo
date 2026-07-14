@@ -181,7 +181,7 @@ function initFAQ() {
 
 // ===== SCROLL REVEAL ANIMATIONS =====
 function initScrollReveal() {
-  const reveals = document.querySelectorAll('.reveal, .service-card, .review-card, .gallery-item, .team-member, .faq-item');
+  const reveals = document.querySelectorAll('.reveal, .service-card, .review-card, .team-member');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

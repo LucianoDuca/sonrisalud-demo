@@ -217,19 +217,6 @@
   animation-delay: 0.2s;
 }
 
-.gallery-item {
-  animation: fadeInUp 0.6s ease-out;
-}
-
-.gallery-item:nth-child(1) { animation-delay: 0s; }
-.gallery-item:nth-child(2) { animation-delay: 0.1s; }
-.gallery-item:nth-child(3) { animation-delay: 0.2s; }
-.gallery-item:nth-child(4) { animation-delay: 0.3s; }
-.gallery-item:nth-child(5) { animation-delay: 0.4s; }
-.gallery-item:nth-child(6) { animation-delay: 0.5s; }
-.gallery-item:nth-child(7) { animation-delay: 0.6s; }
-.gallery-item:nth-child(8) { animation-delay: 0.7s; }
-
 .faq-item {
   animation: fadeInUp 0.5s ease-out;
 }
@@ -275,11 +262,6 @@
 /* Slider handle animation */
 .slider-handle::before {
   animation: pulse 1.5s ease-in-out infinite;
-}
-
-/* Gallery item hover animation */
-.gallery-item:hover {
-  animation: scaleBounce 0.4s ease-out;
 }
 
 /* FAQ toggle animation */
