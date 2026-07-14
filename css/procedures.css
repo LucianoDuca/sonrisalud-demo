@@ -60,12 +60,23 @@
   }
 }
 
+.procedure-image {
+  margin: 0;
+}
+
 .procedure-image img {
   width: 100%;
   max-height: 420px;
   object-fit: cover;
   border-radius: var(--radius-3xl);
   box-shadow: var(--shadow-lg);
+}
+
+.img-note {
+  margin-top: 0.5rem;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted, #6b7280);
+  text-align: center;
 }
 
 .procedure-description {
