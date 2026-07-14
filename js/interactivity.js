@@ -199,6 +199,19 @@ function initScrollReveal() {
   });
 }
 
+// ===== HEADER OFFSET (keeps sticky header from covering scroll targets) =====
+function initHeaderOffset() {
+  const header = document.querySelector('header');
+  if (!header) return;
+
+  function updateOffset() {
+    document.documentElement.style.setProperty('--header-offset', `${header.offsetHeight}px`);
+  }
+
+  updateOffset();
+  window.addEventListener('resize', updateOffset);
+}
+
 // ===== SMOOTH SCROLL (same-page anchors only) =====
 function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -218,6 +231,7 @@ function initSmoothScroll() {
 // ===== INITIALIZE ALL =====
 function initSite() {
   initNavbar();
+  initHeaderOffset();
   initBeforeAfterSlider();
   initGallery();
   initFAQ();
